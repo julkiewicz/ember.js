@@ -6,6 +6,17 @@ import {
 } from 'ember-templates/template_registry';
 import 'ember-templates/bootstrap';
 
+let _Renderer;
+Object.defineProperty(Ember, '_Renderer', {
+  get: () => {
+    if (!_Renderer) {
+      _Renderer = require('ember-templates/renderer').Renderer;
+    }
+    return _Renderer;
+  },
+  enumerable: false
+});
+
 let Component;
 Object.defineProperty(Ember, 'Component', {
   get: () => {
