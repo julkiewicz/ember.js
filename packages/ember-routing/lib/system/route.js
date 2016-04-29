@@ -1188,8 +1188,9 @@ var Route = EmberObject.extend(ActionHandler, Evented, {
     }
 
     var queryParams = get(this, '_qp');
-
     var states = queryParams.states;
+    controller._qpDelegate = states.allowOverrides;
+
     if (transition) {
       // Update the model dep values used to calculate cache keys.
       stashParamNames(this.router, transition.state.handlerInfos);
@@ -1210,8 +1211,6 @@ var Route = EmberObject.extend(ActionHandler, Evented, {
         }
       });
     }
-
-    controller._qpDelegate = states.allowOverrides;
 
     if (transition) {
       var qpValues = getQueryParamsFor(this, transition.state);
